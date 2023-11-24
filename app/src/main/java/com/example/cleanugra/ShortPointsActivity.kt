@@ -107,7 +107,7 @@ class ShortPointsActivity : ComponentActivity() {
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(bottom = 90.dp, top = 40.dp)
+                                .padding(bottom = 90.dp, top = 41.dp)
                         ) {
                             itemsIndexed(
                                 pointsList.value
