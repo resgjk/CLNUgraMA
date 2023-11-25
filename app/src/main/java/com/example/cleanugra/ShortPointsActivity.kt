@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.sp
 import com.example.cleanugra.apiMethods.CategoriesApiMethods
 import com.example.cleanugra.apiMethods.ReceptionsApiMethods
 import com.example.cleanugra.models.categories.CategoryModel
+import com.example.cleanugra.models.receptions.ReceptionModel
 import com.example.cleanugra.models.receptions.ReceptionShortModel
 import com.example.cleanugra.uiData.newGray
 import com.example.cleanugra.uiData.newGreen
@@ -73,7 +74,7 @@ class ShortPointsActivity : ComponentActivity() {
             }
 
             val pointsList = remember {
-                mutableStateOf(emptyList<ReceptionShortModel>())
+                mutableStateOf(emptyList<ReceptionModel>())
             }
             LaunchedEffect(Unit) {
                 pointsList.value =
@@ -219,16 +220,33 @@ class ShortPointsActivity : ComponentActivity() {
 
 
 @Composable
-private fun pointsListItem(point: ReceptionShortModel, context: Context) {
+private fun pointsListItem(point: ReceptionModel, context: Context) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(7.dp),
-        //.clickable() {
-        //    val intent = Intent(context, ShortPointsActivity::class.java)
-        //    intent.putExtra("title", categy.title)
-        //    context.startActivity(intent)
-        //},
+            .padding(7.dp)
+            .clickable() {
+                val intent = Intent(context, DetailPointActivity::class.java)
+                intent.putExtra("id", point.id)
+                intent.putExtra("title", point.title)
+                intent.putExtra("coord_x", point.coord_x)
+                intent.putExtra("coord_y", point.coord_y)
+                intent.putExtra("time", point.time)
+                intent.putExtra("address", point.address)
+                intent.putExtra("description", point.description)
+                if (point.tg_ref != "0") {
+                    intent.putExtra("tg_ref", point.tg_ref)
+                } else {
+                    intent.putExtra("tg_ref", "-")
+                }
+                if (point.vk_ref != "0") {
+                    intent.putExtra("vk_ref", point.vk_ref)
+                } else {
+                    intent.putExtra("vk_ref", "-")
+                }
+                intent.putExtra("phone_number", point.phone_number)
+                context.startActivity(intent)
+            },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
     ) {

@@ -9,7 +9,7 @@ import retrofit2.http.Path
 
 interface ReceptionsApiMethods {
     @GET("reception/categories/{title}")
-    suspend fun getPointsByTitleCategory(@Path("title") title: String): Response<List<ReceptionShortModel>>
+    suspend fun getPointsByTitleCategory(@Path("title") title: String): Response<List<ReceptionModel>>
 
     @GET("reception/{title}")
     suspend fun getPointByTitle(@Path("title") title: String): Response<ReceptionModel>

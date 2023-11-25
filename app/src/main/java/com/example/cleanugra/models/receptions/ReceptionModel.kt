@@ -5,7 +5,7 @@ data class ReceptionModel(
     val title: String,
     val coord_x: String,
     val coord_y: String,
-    val addres: String,
+    val address: String,
     val category: Int,
     val img: String,
     val time: String,
