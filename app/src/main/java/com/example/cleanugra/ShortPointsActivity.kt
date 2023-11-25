@@ -104,18 +104,30 @@ class ShortPointsActivity : ComponentActivity() {
                         modifier = Modifier.padding(5.dp)
                     )
                     if (pointsList.value.isEmpty() == false) {
-                        LazyColumn(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(bottom = 90.dp, top = 41.dp)
-                        ) {
-                            itemsIndexed(
-                                pointsList.value
-                            ) { index, item ->
-                                pointsListItem(item, context)
-                            }
+                        Column {
+                            Image(
+                                painter = painterResource(id = R.drawable.map),
+                                contentDescription = "map",
+                                modifier = Modifier.padding(
+                                    start = 20.dp,
+                                    bottom = 20.dp,
+                                    end = 20.dp,
+                                    top = 45.dp
+                                )
+                            )
+                            LazyColumn(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(bottom = 90.dp, top = 15.dp)
+                            ) {
+                                itemsIndexed(
+                                    pointsList.value
+                                ) { index, item ->
+                                    pointsListItem(item, context)
+                                }
 
+                            }
                         }
                     }
                     NavigationBar(
